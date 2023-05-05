@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeUpERP.WebApi", "CakeUpERP.WebApi\CakeUpERP.WebApi.csproj", "{25706825-B970-4663-934D-815B975BA511}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeUpERP.Application", "CakeUpERP.Application\CakeUpERP.Application.csproj", "{0AF0463F-25D4-4C8D-B70A-403A35B7AAC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeUpERP.Domain", "CakeUpERP.Domain\CakeUpERP.Domain.csproj", "{9DE1BBED-01EE-45EA-AABF-896D42C3ED1B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeUpERP.Infra.Data", "CakeUpERP.Infra.Data\CakeUpERP.Infra.Data.csproj", "{D3A2FF99-2A21-4EE5-8FEB-0454D07F9B16}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeUpERP.Infra.IoC", "CakeUpERP.Infra.IoC\CakeUpERP.Infra.IoC.csproj", "{2F236B97-2C17-4499-858C-17FAA567AF38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0AF0463F-25D4-4C8D-B70A-403A35B7AAC7} = {0AF0463F-25D4-4C8D-B70A-403A35B7AAC7}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeUpERP.Tests", "CakeUpERP.Tests\CakeUpERP.Tests.csproj", "{1515B366-726C-46A8-A6D0-9D7F109ED12B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25706825-B970-4663-934D-815B975BA511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25706825-B970-4663-934D-815B975BA511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25706825-B970-4663-934D-815B975BA511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25706825-B970-4663-934D-815B975BA511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF0463F-25D4-4C8D-B70A-403A35B7AAC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF0463F-25D4-4C8D-B70A-403A35B7AAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF0463F-25D4-4C8D-B70A-403A35B7AAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF0463F-25D4-4C8D-B70A-403A35B7AAC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DE1BBED-01EE-45EA-AABF-896D42C3ED1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE1BBED-01EE-45EA-AABF-896D42C3ED1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE1BBED-01EE-45EA-AABF-896D42C3ED1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE1BBED-01EE-45EA-AABF-896D42C3ED1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A2FF99-2A21-4EE5-8FEB-0454D07F9B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A2FF99-2A21-4EE5-8FEB-0454D07F9B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A2FF99-2A21-4EE5-8FEB-0454D07F9B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A2FF99-2A21-4EE5-8FEB-0454D07F9B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F236B97-2C17-4499-858C-17FAA567AF38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F236B97-2C17-4499-858C-17FAA567AF38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F236B97-2C17-4499-858C-17FAA567AF38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F236B97-2C17-4499-858C-17FAA567AF38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1515B366-726C-46A8-A6D0-9D7F109ED12B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1515B366-726C-46A8-A6D0-9D7F109ED12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1515B366-726C-46A8-A6D0-9D7F109ED12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1515B366-726C-46A8-A6D0-9D7F109ED12B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A1873D1-7A5B-45C3-B716-C4FE499F671A}
+	EndGlobalSection
+EndGlobal
