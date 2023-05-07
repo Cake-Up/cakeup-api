@@ -27,7 +27,7 @@ public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where T
         context.SaveChanges();
     }
 
-    public virtual async Task<TEntity> ObterPorID(int id)
+    public virtual async Task<TEntity?> ObterPorID(int id)
     {
         return dbSet.Find(id);
     }

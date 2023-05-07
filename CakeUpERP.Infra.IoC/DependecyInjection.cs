@@ -33,6 +33,7 @@ namespace CakeUpERP.Infra.IoC
 
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IUsuarioService, UsuarioService>();
+            services.AddTransient<ICompanhiaService, CompanhiaService>();
 
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();

@@ -2,6 +2,7 @@
 using CakeUpERP.Domain.Entities;
 using AutoMapper;
 using CakeUpERP.Application.Enums;
+using CakeUpERP.Application.DTO.Companhia;
 
 namespace CakeUpERP.Application.Profiles
 {
@@ -13,7 +14,9 @@ namespace CakeUpERP.Application.Profiles
             CreateMap<CriarUsuarioDTO, UsuarioEntity>()
                 .ForMember(dst => dst.Role, src => src.MapFrom(src => (int)RolesUsuarios.Funcionario));
 
-            CreateMap<AtualizarUsuarioDTO, UsuarioEntity>().ReverseMap(); 
+            CreateMap<AtualizarUsuarioDTO, UsuarioEntity>().ReverseMap();
+
+            CreateMap<CriarCompanhiaDTO, CompanhiaEntity>().ReverseMap();
 
         }
     }

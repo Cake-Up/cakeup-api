@@ -1,4 +1,5 @@
-﻿using CakeUpERP.Application.Helpers;
+﻿using CakeUpERP.Application.DTO.Companhia;
+using CakeUpERP.Application.Helpers;
 using CakeUpERP.Domain.Validations;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,7 @@ public class CriarUsuarioDTO
     [MaxLength(256)]
     public string Email { get; set; }
     public int IdCompanhia { get; set; }
+    public CriarCompanhiaDTO Companhia { get; set; }
 
     public void Validate()
     {

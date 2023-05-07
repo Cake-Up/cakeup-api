@@ -19,7 +19,7 @@ public class UsuarioController : ControllerBase
 
     public UsuarioController(IUsuarioService usuarioService)
     {
-    _usuarioService = usuarioService;
+        _usuarioService = usuarioService;
     }
 
     [HttpPost("Cadastrar")]
@@ -29,6 +29,9 @@ public class UsuarioController : ControllerBase
         try
         {
             dadosUsuario.Email = dadosUsuario.Email.ToLower().Trim();
+            if (!Maoli.Cnpj.Validate(dadosUsuario.Companhia.CNPJ))
+                throw new Exception("Cnpj Invalido!");
+            
             var resultado = _usuarioService.CadastrarUsuario(dadosUsuario);
 
             return Ok("Usuario cadastrado com sucesso!");

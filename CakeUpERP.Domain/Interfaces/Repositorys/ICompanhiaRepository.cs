@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 namespace CakeUpERP.Domain.Interfaces.Repositorys;
 public interface ICompanhiaRepository : IRepositoryBase<CompanhiaEntity>
 {
-
+    bool VeririficarCadastroCompanhia(string cnpj);
 }

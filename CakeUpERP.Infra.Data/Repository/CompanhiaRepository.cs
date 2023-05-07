@@ -13,5 +13,14 @@ namespace CakeUpERP.Infra.Data.Repository
     {
         public CompanhiaRepository(DataContext DbContext) : base(DbContext) { }
 
+
+        public bool VeririficarCadastroCompanhia(string cnpj)
+        {
+            if(string.IsNullOrEmpty(cnpj) && cnpj.Length != 14)
+                return false;
+
+            return dbSet.Where(c => c.Cnpj == cnpj).Any();
+        }
+
     }
 }
