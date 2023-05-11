@@ -14,16 +14,18 @@ namespace CakeUpERP.Infra.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "tb_companhia",
+                name: "companhia",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    NomeSite = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Cnpj = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UrlImagem = table.Column<string>(type: "longtext", nullable: false)
+                    UrlImagem = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DataExclusao = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     DataCriacao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -31,18 +33,20 @@ namespace CakeUpERP.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_companhia", x => x.Id);
-                    table.UniqueConstraint("AK_tb_companhia_Cnpj", x => x.Cnpj);
+                    table.PrimaryKey("PK_companhia", x => x.Id);
+                    table.UniqueConstraint("AK_companhia_Cnpj", x => x.Cnpj);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "tb_usuario",
+                name: "usuario",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(36)", maxLength: 36, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Nome = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Cpf = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -61,35 +65,35 @@ namespace CakeUpERP.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_usuario", x => x.Id);
-                    table.UniqueConstraint("AK_tb_usuario_Email", x => x.Email);
+                    table.PrimaryKey("PK_usuario", x => x.Id);
+                    table.UniqueConstraint("AK_usuario_Email", x => x.Email);
                     table.ForeignKey(
-                        name: "FK_tb_usuario_tb_companhia_CompanhiaId",
+                        name: "FK_usuario_companhia_CompanhiaId",
                         column: x => x.CompanhiaId,
-                        principalTable: "tb_companhia",
+                        principalTable: "companhia",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
-                table: "tb_companhia",
-                columns: new[] { "Id", "Cnpj", "DataCriacao", "DataExclusao", "DataUpdate", "Nome", "UrlImagem" },
-                values: new object[] { 1, "64547425000106", new DateTime(2023, 5, 4, 22, 34, 30, 837, DateTimeKind.Local).AddTicks(5559), null, null, "Companhia 01 Ltda", "" });
+                table: "companhia",
+                columns: new[] { "Id", "Cnpj", "DataCriacao", "DataExclusao", "DataUpdate", "Nome", "NomeSite", "UrlImagem" },
+                values: new object[] { 1, "64547425000106", new DateTime(2023, 5, 10, 23, 23, 32, 710, DateTimeKind.Local).AddTicks(8477), null, null, "Companhia 01 Ltda", null, "" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_usuario_CompanhiaId",
-                table: "tb_usuario",
+                name: "IX_usuario_CompanhiaId",
+                table: "usuario",
                 column: "CompanhiaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tb_usuario");
+                name: "usuario");
 
             migrationBuilder.DropTable(
-                name: "tb_companhia");
+                name: "companhia");
         }
     }
 }

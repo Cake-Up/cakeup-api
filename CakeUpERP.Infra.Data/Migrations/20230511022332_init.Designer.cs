@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CakeUpERP.Infra.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230505013431_init")]
+    [Migration("20230511022332_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,22 +46,25 @@ namespace CakeUpERP.Infra.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("NomeSite")
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
+
                     b.Property<string>("UrlImagem")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.HasAlternateKey("Cnpj");
 
-                    b.ToTable("tb_companhia", (string)null);
+                    b.ToTable("companhia", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Cnpj = "64547425000106",
-                            DataCriacao = new DateTime(2023, 5, 4, 22, 34, 30, 837, DateTimeKind.Local).AddTicks(5559),
+                            DataCriacao = new DateTime(2023, 5, 10, 23, 23, 32, 710, DateTimeKind.Local).AddTicks(8477),
                             Nome = "Companhia 01 Ltda",
                             UrlImagem = ""
                         });
@@ -80,6 +83,10 @@ namespace CakeUpERP.Infra.Data.Migrations
 
                     b.Property<int>("CompanhiaId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Cpf")
+                        .HasMaxLength(11)
+                        .HasColumnType("varchar(11)");
 
                     b.Property<DateTime>("DataAtualizacao")
                         .HasColumnType("datetime(6)");
@@ -124,7 +131,7 @@ namespace CakeUpERP.Infra.Data.Migrations
 
                     b.HasIndex("CompanhiaId");
 
-                    b.ToTable("tb_usuario", (string)null);
+                    b.ToTable("usuario", (string)null);
                 });
 
             modelBuilder.Entity("CakeUpERP.Domain.Entities.UsuarioEntity", b =>

@@ -8,9 +8,9 @@ namespace CakeUpERP.Domain.Entities
 {
     public class CompanhiaEntity : EntityBase
     {
-        private string _cnpj { get; set; }
         public string Nome { get; set; }
-        public string Cnpj { get; set; }
-        public string UrlImagem { get; set; }
+        public string? NomeSite { get; set; }
+        public string? Cnpj { get; set; }
+        public string? UrlImagem { get; set; }
     }
 }
