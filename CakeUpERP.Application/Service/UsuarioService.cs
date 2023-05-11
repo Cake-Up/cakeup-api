@@ -35,10 +35,10 @@ public class UsuarioService : IUsuarioService
             var dadosUsuario = await _usuarioRepository.ObterUsuarioPorEmail(newUser.Email);
             if (dadosUsuario != null)
                 ObjetoCadastradoException.When("Email ja cadastrado no sistema");
+
             dadosUsuario = _mapper.Map<UsuarioEntity>(newUser);
             dadosUsuario.DataCriacao = DateTime.Now;
             dadosUsuario.Id = Guid.NewGuid().ToString();
-            dadosUsuario.Companhia = _companhiaRepository.ObterPorID(newUser.IdCompanhia).Result;
             await _usuarioRepository.Cadastrar(dadosUsuario);
         }
         catch(Exception e)

@@ -10,7 +10,5 @@ namespace CakeUpERP.Application.DTO.Companhia
     public class CriarCompanhiaDTO
     {
         public string Nome { get; set; }
-        public string? CNPJ { get; set; }
-
     }
 }

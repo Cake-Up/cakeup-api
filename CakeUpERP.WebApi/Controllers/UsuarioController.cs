@@ -28,12 +28,10 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            dadosUsuario.Email = dadosUsuario.Email.ToLower().Trim();
-            if (!Maoli.Cnpj.Validate(dadosUsuario.Companhia.CNPJ))
-                throw new Exception("Cnpj Invalido!");
-            
+            dadosUsuario.Email = dadosUsuario.Email.ToLower().Trim();            
             var resultado = _usuarioService.CadastrarUsuario(dadosUsuario);
-
+            if (resultado.IsFaulted)
+                throw new Exception("Não foi possivel cadastrar o usuario!");
             return Ok("Usuario cadastrado com sucesso!");
         }
         catch(Exception e)
