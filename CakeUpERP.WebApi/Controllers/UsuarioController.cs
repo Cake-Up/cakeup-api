@@ -36,7 +36,7 @@ public class UsuarioController : ControllerBase
         }
         catch(Exception e)
         {
-            return BadRequest(e.Message);
+            return BadRequest(new { message = e.Message });
         }
 
     }
@@ -75,9 +75,9 @@ public class UsuarioController : ControllerBase
     {
         var resultado = _usuarioService.RevogarAcessoUsuario(email);
         if(resultado.IsCompletedSuccessfully)
-            return Ok("Acesso do usuario revogado com sucesso!");
+            return Ok(new { message = "Acesso do usuario revogado com sucesso!" });
 
-        return BadRequest("Não foi possivel revogar o acesso do usuario");
+        return BadRequest(new { message = "Não foi possivel revogar o acesso do usuario" });
     }
 
     [HttpGet("ObterUsuariosPorIdCompanhia/{IdCompanhia}")]
