@@ -16,8 +16,8 @@ namespace CakeUpERP.Domain.Entities
         public string Endereco { get; set; }
         public int IdCompanhia { get; set; }
 
+        public CompanhiaEntity Companhia { get; set; }
         public List<ObservacaoClienteEntity> ObservacaoClienteEntities { get; set; }
-        public UsuarioEntity Companhia { get; set; }
 
     }
 }

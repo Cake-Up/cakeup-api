@@ -8,8 +8,10 @@ namespace CakeUpERP.Domain.Entities
 {
     public class ObservacaoClienteEntity : EntityBase
     {
-        public string IdCliente { get; set; }
+        public int IdCliente { get; set; }
         public DateTime DataObservacao { get; set; }
         public string Observacao { get; set; }
+
+        public ClienteEntity Cliente { get; set; }
     }
 }
