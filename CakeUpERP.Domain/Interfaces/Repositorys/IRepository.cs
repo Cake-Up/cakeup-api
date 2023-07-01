@@ -10,5 +10,5 @@ public interface IRepositoryBase<TEntity> where TEntity : class
 {
     Task Cadastrar(TEntity obj);
     Task Atualizar(TEntity obj);
-    Task<TEntity> ObterPorID(int id);
+    Task<TEntity?> ObterPorID(int id);
 }

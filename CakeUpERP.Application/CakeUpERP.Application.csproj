@@ -19,4 +19,10 @@
     <ProjectReference Include="..\CakeUpERP.Domain\CakeUpERP.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\Bases\" />
+    <Folder Include="DTO\Cliente\" />
+    <Folder Include="DTO\InterfacesCompartilhadas\" />
+  </ItemGroup>
+
 </Project>

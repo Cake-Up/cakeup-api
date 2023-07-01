@@ -21,7 +21,6 @@ namespace CakeUpERP.Infra.Data.Context
             builder.ApplyConfiguration(new CompanhiaConfiguration());
             builder.ApplyConfiguration(new ClienteConfiguration());
             builder.ApplyConfiguration(new ObservacaoClienteConfiguration());
-
         }
     }
 }

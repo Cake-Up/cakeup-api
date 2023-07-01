@@ -30,7 +30,7 @@ namespace CakeUpERP.Infra.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     IdCompanhia = table.Column<int>(type: "int", nullable: false),
                     DataExclusao = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    DataCriacao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    DataCriacao = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     DataUpdate = table.Column<DateTime>(type: "datetime(6)", nullable: true)
                 },
                 constraints: table =>
@@ -56,7 +56,7 @@ namespace CakeUpERP.Infra.Data.Migrations
                     Observacao = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DataExclusao = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    DataCriacao = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "NOW()"),
+                    DataCriacao = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     DataUpdate = table.Column<DateTime>(type: "datetime(6)", nullable: true)
                 },
                 constraints: table =>

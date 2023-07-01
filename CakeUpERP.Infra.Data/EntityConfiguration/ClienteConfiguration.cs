@@ -11,6 +11,7 @@ public class ClienteConfiguration : IEntityTypeConfiguration<ClienteEntity>
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Apelido).IsRequired();
         builder.Property(c => c.Nome).IsRequired();
+        builder.Property(c => c.DataCriacao).IsRequired().HasDefaultValueSql("CURRENT_TIMESTAMP");
 
         builder.HasOne(c => c.Companhia)
             .WithMany(c => c.Clientes)

@@ -10,8 +10,4 @@
     <PackageReference Include="Maoli" Version="3.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Filters\" />
-  </ItemGroup>
-
 </Project>
