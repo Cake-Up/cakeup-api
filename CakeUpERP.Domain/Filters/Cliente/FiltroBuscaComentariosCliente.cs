@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CakeUpERP.Domain.Cliente
 {
-    public class FiltroBuscaComentariosCliente : PaginationBase
+    public class FiltroBuscaObservacaoCliente : PaginationBase
     {
         public int IdCliente { get; set; }
     }

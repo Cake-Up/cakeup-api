@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CakeUpERP.Application.DTO.Cliente;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace CakeUpERP.Application.Interfaces
 {
     public interface IClienteService
     {
+        Task CadastrarCliente(CadastrarClienteModel cliente);
     }
 }
