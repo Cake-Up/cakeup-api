@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CakeUpERP.Application.DTO.Cliente
 {
-    public class CadastrarClienteModel
+    public class DadosCliente
     {
         public int Id { get; set; }
         public string Nome { get; set; }

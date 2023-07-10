@@ -65,5 +65,13 @@ namespace CakeUpERP.Infra.Data.Repository
                 .Take(filtro.QtdRegistros)
                 .ToListAsync();
         }
+
+        public bool VerificarClienteCompanhia(int idCliente, int idCompanhia)
+        {
+            if(idCliente == 0 || idCompanhia == 0)
+                return false;
+
+            return dbSet.Find(idCliente)?.IdCompanhia == idCompanhia;
+        }
     }
 }

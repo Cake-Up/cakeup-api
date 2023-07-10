@@ -17,6 +17,6 @@ namespace CakeUpERP.Domain.Interfaces.Repositorys
         Task<ObservacaoClienteEntity?> ObterObservacaoCliente(int idObservacao);
         Task<List<ObservacaoClienteEntity>> ObterObservacoesClientePagination(FiltroBuscaObservacaoCliente filtro);
         Task<List<ClienteEntity>> ObterTodosOsClientes(int idCompanhia);
-
+        bool VerificarClienteCompanhia(int idCliente, int idCompanhia);
     }
 }

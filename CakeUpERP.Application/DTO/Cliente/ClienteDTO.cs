@@ -11,7 +11,7 @@ namespace CakeUpERP.Application.DTO.Cliente
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public List<ObservacaoClienteDTO> ObservacaoCliente { get; set; }
+        public List<DadosObservacaoCliente> ObservacaoCliente { get; set; }
 
         public ClienteDTO() { }
         public ClienteDTO(ClienteEntity cliente)
@@ -19,7 +19,7 @@ namespace CakeUpERP.Application.DTO.Cliente
             Id = cliente.Id;
             Nome = cliente.Nome;
             ObservacaoCliente = cliente.ObservacaoClienteEntities
-                .Select(k => new ObservacaoClienteDTO(k))
+                .Select(k => new DadosObservacaoCliente(k))
                 .ToList();
         }
 

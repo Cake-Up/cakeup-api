@@ -32,6 +32,7 @@ public class UsuarioController : ControllerBase
             var resultado = _usuarioService.CadastrarUsuario(dadosUsuario);
             if (resultado.IsFaulted)
                 throw new Exception("Não foi possivel cadastrar o usuario!");
+
             return Ok(new { message = "Usuario cadastrado com sucesso!" });
         }
         catch(Exception e)

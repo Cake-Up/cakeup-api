@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace CakeUpERP.Application.DTO.Cliente
 {
-    public class ObservacaoClienteDTO
+    public class DadosObservacaoCliente
     {
         public int Id { get; set; }
+        public int IdCliente { get; set; }
         public DateTime DataObservacao { get; set; }
         public string Observacao { get; set; }
     
-        public ObservacaoClienteDTO() { }
-        public ObservacaoClienteDTO(ObservacaoClienteEntity observacaoEntity)
+        public DadosObservacaoCliente() { }
+        public DadosObservacaoCliente(ObservacaoClienteEntity observacaoEntity)
         {
             Observacao = observacaoEntity.Observacao;
             Id = observacaoEntity.Id;
