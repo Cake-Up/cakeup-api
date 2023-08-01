@@ -19,7 +19,7 @@ namespace CakeUpERP.WebApi.Controllers
         [HttpPost]
         public IActionResult Cadastrar(DadosCliente cliente)
         {
-            var cadastroCliente = _clienteService.CadastrarCliente(cliente);
+            var cadastroCliente = _clienteService.Cadastrar(cliente);
             if(cadastroCliente.IsCompletedSuccessfully)
                 return Ok(new { mensagem = "Cliente Cadastrado com sucesso" });
 
@@ -27,13 +27,43 @@ namespace CakeUpERP.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionarObservacaoCliente(DadosObservacaoCliente dadosObservacaoCliente)
+        public IActionResult AdicionarObservacao(DadosObservacaoCliente dadosObservacaoCliente)
         {
-            var resultado = _clienteService.CadastrarObservacaoCliente(dadosObservacaoCliente);
+            var resultado = _clienteService.CadastrarObservacao(dadosObservacaoCliente);
             if (resultado.IsCompletedSuccessfully)
                 return Ok(new { mensagem = "Observacao Cadastrada com sucesso" });
 
-            return BadRequest(new { mensagem = "Não foi possivel cadastrar o observacao" });
+            return BadRequest(new { mensagem = "Não foi possivel cadastrar o observacao " });
+        }
+
+        [HttpPut]
+        public IActionResult Atualizar(DadosCliente cliente)
+        {
+            var cadastroCliente = _clienteService.Atualizar(cliente);
+            if (cadastroCliente.IsCompletedSuccessfully)
+                return Ok(new { mensagem = "Cliente atualizado com sucesso" });
+
+            return BadRequest(new { mensagem = "Não foi possivel atualizar o cliente" });
+        }
+
+        [HttpDelete]
+        public IActionResult Deletar(int idCliente)
+        {
+            var result = _clienteService.Deletar(idCliente);
+            if (result.IsCompletedSuccessfully)
+                return Ok(new { mensagem = "Cliente deletado com sucesso" });
+
+            return BadRequest(new { mensagem = "Não foi possivel deletar o cliente" });
+        }
+
+        [HttpDelete]
+        public IActionResult DeletarObservacao(int idObservacao)
+        {
+            var result = _clienteService.DeletarObservacao(idObservacao);
+            if (result.IsCompletedSuccessfully)
+                return Ok(new { mensagem = "Observação deletado com sucesso" });
+
+            return BadRequest(new { mensagem = "Não foi possivel deletar o observação cliente" });
         }
     }
 }

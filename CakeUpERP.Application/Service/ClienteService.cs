@@ -14,7 +14,7 @@ namespace CakeUpERP.Application.Service
             _repository = repository;
         }
 
-        public Task CadastrarCliente(DadosCliente cliente)
+        public Task Cadastrar(DadosCliente cliente)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace CakeUpERP.Application.Service
             }
         }
 
-        public Task AtualizarCliente(DadosCliente cliente)
+        public Task Atualizar(DadosCliente cliente)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace CakeUpERP.Application.Service
             }
         }
 
-        public Task CadastrarObservacaoCliente(DadosObservacaoCliente observacao)
+        public Task CadastrarObservacao(DadosObservacaoCliente observacao)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace CakeUpERP.Application.Service
                     DataObservacao = observacao.DataObservacao
                 };
 
-                return _repository.AdicionarObservacaoCliente(observacaoClienteEntity);
+                return _repository.AdicionarObservacao(observacaoClienteEntity);
 
             }
             catch(Exception ex)
@@ -79,7 +79,7 @@ namespace CakeUpERP.Application.Service
             }
         }
 
-        public List<DadosObservacaoCliente> ObterObservacoesCliente(FiltroBuscaObservacaoCliente filtro)
+        public List<DadosObservacaoCliente> ObterObservacoes(FiltroBuscaObservacaoCliente filtro)
         {
             try
             {
@@ -94,11 +94,11 @@ namespace CakeUpERP.Application.Service
 
         }
 
-        public List<ClienteDTO> ObterTodosOsClientes(int idCompanhia)
+        public List<ClienteDTO> ObterTodos(int idCompanhia)
         {
             try
             {
-                return _repository.ObterTodosOsClientes(idCompanhia)
+                return _repository.ObterTodos(idCompanhia)
                     .Result
                     .Select(k => new ClienteDTO(k))
                     .ToList();
@@ -110,11 +110,11 @@ namespace CakeUpERP.Application.Service
 
         }
 
-        public Task DeletarCliente(int idCliente)
+        public Task Deletar(int idCliente)
         {
             try
             {
-                return _repository.DeletarCliente(idCliente);
+                return _repository.Deletar(idCliente);
             }
             catch(Exception ex)
             {
@@ -122,22 +122,29 @@ namespace CakeUpERP.Application.Service
             }
         }
 
-        public Task DeletarObservacaoCliente(int idObservacao)
+        public Task DeletarObservacao(int idObservacao)
         {
             try
             {
-                return _repository.DeletarObservacaoCliente(idObservacao);
+                return _repository.DeletarObservacao(idObservacao);
             }
-            catch(Exception e) { return Task.FromException(e); }
+            catch(Exception e)
+            { 
+                return Task.FromException(e);
+            }
         }
 
-        public ClienteDTO ObterCliente(int idCliente)
+        public ClienteDTO ObterPorId(int idCliente)
         {
             try
             {
-                return new ClienteDTO(_repository.ObterPorID(idCliente).Result);
+                var cliente = _repository.ObterPorID(idCliente).Result;
+                return new ClienteDTO(cliente);
             }
-            catch (Exception e) { throw e;}
+            catch (Exception e)
+            {
+                return Task.FromException(e);
+            }
         }
 
         public bool VerificarClienteCompanhia(int idCliente, int idCompanhia)

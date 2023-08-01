@@ -10,14 +10,14 @@ namespace CakeUpERP.Application.Interfaces
 {
     public interface IClienteService
     {
-        Task AtualizarCliente(DadosCliente cliente);
-        Task CadastrarCliente(DadosCliente cliente);
-        Task CadastrarObservacaoCliente(DadosObservacaoCliente observacao);
-        Task DeletarCliente(int idCliente);
-        Task DeletarObservacaoCliente(int idObservacao);
-        List<DadosObservacaoCliente> ObterObservacoesCliente(FiltroBuscaObservacaoCliente filtro);
-        List<ClienteDTO> ObterTodosOsClientes(int idCompanhia);
-        ClienteDTO ObterCliente(int idCliente);
+        Task Atualizar(DadosCliente cliente);
+        Task Cadastrar(DadosCliente cliente);
+        Task CadastrarObservacao(DadosObservacaoCliente observacao);
+        Task Deletar(int idCliente);
+        Task DeletarObservacao(int idObservacao);
+        List<DadosObservacaoCliente> ObterObservacoes(FiltroBuscaObservacaoCliente filtro);
+        List<ClienteDTO> ObterTodos(int idCompanhia);
+        ClienteDTO ObterPorId(int idCliente);
         bool VerificarClienteCompanhia(int idCliente, int idCompanhia);
     }
 }

@@ -10,7 +10,7 @@ namespace CakeUpERP.Infra.Data.Repository
     {
         public ClienteRepository(DataContext DbContext) : base(DbContext) { }
 
-        public Task<List<ClienteEntity>> ObterTodosOsClientes(int idCompanhia)
+        public Task<List<ClienteEntity>> ObterTodos(int idCompanhia)
         {
             return dbSet.Where(c => c.IdCompanhia == idCompanhia && c.DataExclusao == null).ToListAsync();
         }
@@ -20,11 +20,11 @@ namespace CakeUpERP.Infra.Data.Repository
             return context.observacoesCliente.Where(c => c.Id == idObservacao).FirstOrDefaultAsync();
         }
 
-        public Task DeletarCliente(int idCliente)
+        public Task Deletar(int idCliente)
         {
             var cliente = ObterPorID(idCliente).Result;
             cliente.DataExclusao = DateTime.Now;
-            DeletarObservacaoCliente(idCliente);
+            DeletarObservacao(idCliente);
             return context.SaveChangesAsync();
         }
 
@@ -37,11 +37,11 @@ namespace CakeUpERP.Infra.Data.Repository
 
             var observacoes = cliente!.ObservacaoClienteEntities;
             var deletarObservacaos = new List<Task>();
-            observacoes.ForEach(c => deletarObservacaos.Add(DeletarObservacaoCliente(c.Id)));
+            observacoes.ForEach(c => deletarObservacaos.Add(DeletarObservacao(c.Id)));
             return Task.WhenAll(deletarObservacaos.ToArray());
         }
 
-        public Task DeletarObservacaoCliente(int idObservacao)
+        public Task DeletarObservacao(int idObservacao)
         {
             var observacaoCliente = context.observacoesCliente.Find(idObservacao);
             observacaoCliente.DataExclusao = DateTime.Now;
@@ -49,7 +49,7 @@ namespace CakeUpERP.Infra.Data.Repository
         }
 
 
-        public Task AdicionarObservacaoCliente(ObservacaoClienteEntity observacao)
+        public Task AdicionarObservacao(ObservacaoClienteEntity observacao)
         {
             if(observacao.IdCliente == 0)
                 throw new NullReferenceException(nameof(observacao));
