@@ -16,8 +16,8 @@ namespace CakeUpERP.Application.Interfaces
         Task Deletar(int idCliente);
         Task DeletarObservacao(int idObservacao);
         List<DadosObservacaoCliente> ObterObservacoes(FiltroBuscaObservacaoCliente filtro);
+        ClienteDTO? ObterPorId(int idCliente);
         List<ClienteDTO> ObterTodos(int idCompanhia);
-        ClienteDTO ObterPorId(int idCliente);
         bool VerificarClienteCompanhia(int idCliente, int idCompanhia);
     }
 }

@@ -134,7 +134,7 @@ namespace CakeUpERP.Application.Service
             }
         }
 
-        public ClienteDTO ObterPorId(int idCliente)
+        public ClienteDTO? ObterPorId(int idCliente)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace CakeUpERP.Application.Service
             }
             catch (Exception e)
             {
-                return Task.FromException(e);
+                return null;
             }
         }
 
