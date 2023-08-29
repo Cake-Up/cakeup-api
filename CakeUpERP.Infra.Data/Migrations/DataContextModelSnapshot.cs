@@ -123,7 +123,7 @@ namespace CakeUpERP.Infra.Data.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValueSql("NOW()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("DataExclusao")
                         .HasColumnType("datetime(6)");

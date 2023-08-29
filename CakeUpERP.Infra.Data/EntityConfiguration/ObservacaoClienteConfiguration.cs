@@ -10,7 +10,7 @@ public class ObservacaoClienteConfiguration : IEntityTypeConfiguration<Observaca
         builder.ToTable("observacao_cliente");
         builder.HasKey(u => u.Id);
         builder.Property(u => u.Observacao).HasMaxLength(256);
-        builder.Property(u => u.DataCriacao).IsRequired().HasDefaultValueSql("NOW()");
+        builder.Property(c => c.DataCriacao).IsRequired().HasDefaultValueSql("CURRENT_TIMESTAMP");
 
         builder
             .HasOne(o => o.Cliente)

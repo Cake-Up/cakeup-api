@@ -1,6 +1,7 @@
 ﻿using CakeUpERP.Domain.Entities;
 using CakeUpERP.Domain.Interfaces.Repositorys;
 using CakeUpERP.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace CakeUpERP.Infra.Data.Repository
 {
@@ -10,8 +11,10 @@ namespace CakeUpERP.Infra.Data.Repository
 
         public async Task<UsuarioEntity?> ObterUsuarioPorEmail(string email)
         {
-            var usuario = dbSet.Where(u => u.Ativo).FirstOrDefault(u => u.Email == email);
-                        
+            var usuario = dbSet.Where(u => u.Ativo)
+                .Include(u => u.Companhia)
+                .FirstOrDefault(u => u.Email == email);
+
             return usuario;
         }
 

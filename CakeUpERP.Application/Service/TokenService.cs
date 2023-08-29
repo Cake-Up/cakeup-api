@@ -57,27 +57,27 @@ public class TokenService: ITokenService
     {
         try
         {
-        var tokenValidationParameters = new TokenValidationParameters
-        {
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JWT:Secret"])),
-            ValidateLifetime = false,
-            ValidateAudience = false,
-            ValidateIssuer = false,
-            ValidateIssuerSigningKey = true,
-        };
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JWT:Secret"])),
+                ValidateLifetime = false,
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ValidateIssuerSigningKey = true,
+            };
 
-        var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenHandler = new JwtSecurityTokenHandler();
 
 
-        var principal = tokenHandler.ValidateToken(token, tokenValidationParameters,
-                        out SecurityToken securityToken);
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters,
+                            out SecurityToken securityToken);
 
-            if (securityToken is not JwtSecurityToken jwtSecurityToken ||
-                      !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
-                                     StringComparison.InvariantCultureIgnoreCase))
-                throw new SecurityTokenException("Invalid token");
+                if (securityToken is not JwtSecurityToken jwtSecurityToken ||
+                            !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
+                                            StringComparison.InvariantCultureIgnoreCase))
+                    throw new SecurityTokenException("Invalid token");
 
-        return principal.Claims;
+            return principal.Claims;
         }
         catch (Exception ex)
         {
@@ -108,7 +108,8 @@ public class TokenService: ITokenService
             {
                 new Claim(ClaimTypes.Name, usuario.Nome),
                 new Claim(ClaimTypes.Email, usuario.Email),
-                new Claim(ClaimTypes.Role, usuario.Role)
+                new Claim(ClaimTypes.Role, usuario.Role),
+                new Claim("IdCompanhia", usuario.Companhia.Id.ToString()),
             };
     }
 }
