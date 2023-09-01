@@ -1,4 +1,6 @@
+using CakeUpERP.Infra.Data.Context;
 using CakeUpERP.Infra.IoC;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,6 +42,7 @@ builder.Services.AddCors();
 
 DependecyInjection.AddInfrastructure(builder.Services, config);
 DependecyInjectionJWT.AddInfrastructure(builder.Services, config);
+DependecyInjection.RunMigrations();
 
 var app = builder.Build();
 

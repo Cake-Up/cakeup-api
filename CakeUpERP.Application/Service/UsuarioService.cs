@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using CakeUpERP.Domain.Interfaces.Repositorys;
 using CakeUpERP.Application.Interfaces;
 using CakeUpERP.Application.DTO.Usuario;
-using AutoMapper;
 using CakeUpERP.Domain.Entities;
 using CakeUpERP.Domain.Validations;
 using CakeUpERP.Application.Helpers;
@@ -17,26 +16,31 @@ public class UsuarioService : IUsuarioService
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly ICompanhiaRepository _companhiaRepository;
     private readonly ITokenService _tokenService;
-    private readonly IMapper _mapper;
 
 
-    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper, ITokenService tokenService, ICompanhiaRepository companhiaRepository)
+    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenService tokenService, ICompanhiaRepository companhiaRepository)
     {
         _usuarioRepository = usuarioRepository;
-        _mapper = mapper;
         _tokenService = tokenService;
         _companhiaRepository = companhiaRepository;
     }
 
-    public async Task CadastrarUsuario(CriarUsuarioDTO newUser)
+    public async Task CadastrarUsuario(CriarUsuarioDTO novoUsuario)
     {
         try
         {
-            var dadosUsuario = await _usuarioRepository.ObterUsuarioPorEmail(newUser.Email);
+            var dadosUsuario = await _usuarioRepository.ObterUsuarioPorEmail(novoUsuario.Email);
             if (dadosUsuario != null)
                 ObjetoCadastradoException.When("Email ja cadastrado no sistema");
 
-            dadosUsuario = _mapper.Map<UsuarioEntity>(newUser);
+            dadosUsuario = new UsuarioEntity()
+            {
+                Ativo = true,
+                Nome = novoUsuario.Nome,
+                Email = novoUsuario.Email,
+                Password = novoUsuario.Password,                
+            };
+            
             dadosUsuario.DataCriacao = DateTime.Now;
             dadosUsuario.Id = Guid.NewGuid().ToString();
             await _usuarioRepository.Cadastrar(dadosUsuario);
@@ -52,12 +56,24 @@ public class UsuarioService : IUsuarioService
         try
         {
             var token = new TokenModel();
-            var user = _usuarioRepository.ObterUsuarioPorEmail(email).Result;
+            var usuario = _usuarioRepository.ObterUsuarioPorEmail(email).Result;
 
-            if (user == null || !PasswordHelper.VerificandoSenha(user.Password, password))
+            if (usuario == null || !PasswordHelper.VerificandoSenha(usuario.Password, password))
                 throw new Exception();
-
-            token.AcessToken = _tokenService.GerarToken(_mapper.Map<UsuarioDTO>(user));
+            var userDTO = new UsuarioDTO()
+            {
+                Nome = usuario.Nome,
+                Email = email,
+                Password = password,
+                IdUsuario = usuario.Id,
+                Companhia = new DTO.Companhia.CompanhiaDTO()
+                {
+                    CNPJ = usuario.Companhia.Cnpj,
+                    Id = usuario.Companhia.Id,
+                    Nome = usuario.Companhia.Nome
+                }
+            };
+            token.AcessToken = _tokenService.GerarToken(userDTO));
             token.RefreshToken = ObterRefreshToken(email);
             return Task.FromResult(token);
         }

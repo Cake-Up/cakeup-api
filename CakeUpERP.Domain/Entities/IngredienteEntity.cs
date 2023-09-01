@@ -8,6 +8,6 @@
         public int TipoEmbalagem { get; set; }
         public DateTime Validade { get; set; }
         public int IdUnidadeMedida { get; set; }
-        public List<AtualizacoesPrecosEntity> AtualizacoesPrecos { get; set; }
+        public List<MovimentacoesIngredientes> MovimentacoesIngredientes { get; set; }
     }
 }

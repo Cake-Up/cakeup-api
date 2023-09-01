@@ -15,7 +15,7 @@ namespace CakeUpERP.Domain.Entities
         public float Peso { get; set; }
         public string ModoDePreparo { get; set; }
         public DateTime DataPreparo { get; set; }
-        public List<IngredientesReceitaEntity> Ingrediente { get; set; }
-        public List<UtensiliosEEquipamentosEntity> UtensiliosEEquipamentos { get; set; }
+        public virtual List<RlIngredientesReceita> Ingrediente { get; set; }
+        public virtual List<UtensiliosEEquipamentosEntity> UtensiliosEEquipamentos { get; set; }
     }
 }

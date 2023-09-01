@@ -4,12 +4,12 @@ using CakeUpERP.Infra.Data.Context;
 using CakeUpERP.Infra.Data.Repository;
 using CakeUpERP.Domain.Interfaces.Repositorys;
 using Microsoft.Extensions.Configuration;
-using CakeUpERP.Application.Profiles;
 using MediatR;
 using CakeUpERP.Application.Interfaces;
 using CakeUpERP.Application.Service;
 using AutoMapper;
 using System.Reflection;
+using Microsoft.Extensions.Hosting;
 
 namespace CakeUpERP.Infra.IoC
 {
@@ -39,6 +39,19 @@ namespace CakeUpERP.Infra.IoC
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<ICompanhiaRepository, CompanhiaRepository>();
 
+        }
+
+        public static void RunMigrations()
+        {
+            var host = Host.CreateDefaultBuilder().Build();
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<DataContext>();
+                db.Database.Migrate();
+            }
+
+            host.Run();
         }
     }
 }
