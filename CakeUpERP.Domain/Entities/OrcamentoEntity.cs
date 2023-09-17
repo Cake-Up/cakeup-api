@@ -15,6 +15,5 @@ namespace CakeUpERP.Domain.Entities
         public int IdStatusOrcamento { get; set; }
         public virtual ClienteEntity Cliente { get; set; }
         public virtual List<RlItensOrcamento> ItensOrcamentos { get; set; }
-
     }
 }

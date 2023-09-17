@@ -17,7 +17,7 @@ namespace CakeUpERP.Infra.Data.Repository
 
         public Task<ObservacaoClienteEntity?> ObterObservacaoCliente(int idObservacao)
         {
-            return context.observacoesCliente.Where(c => c.Id == idObservacao).FirstOrDefaultAsync();
+            return context.ObservacoesCliente.Where(c => c.Id == idObservacao).FirstOrDefaultAsync();
         }
 
         public Task Deletar(int idCliente)
@@ -43,7 +43,7 @@ namespace CakeUpERP.Infra.Data.Repository
 
         public Task DeletarObservacao(int idObservacao)
         {
-            var observacaoCliente = context.observacoesCliente.Find(idObservacao);
+            var observacaoCliente = context.ObservacoesCliente.Find(idObservacao);
             observacaoCliente.DataExclusao = DateTime.Now;
             return context.SaveChangesAsync();
         }
@@ -54,13 +54,13 @@ namespace CakeUpERP.Infra.Data.Repository
             if(observacao.IdCliente == 0)
                 throw new NullReferenceException(nameof(observacao));
 
-            context.observacoesCliente.Add(observacao);
+            context.ObservacoesCliente.Add(observacao);
             return context.SaveChangesAsync();
         }
 
         public Task<List<ObservacaoClienteEntity>> ObterObservacoesClientePagination(FiltroBuscaObservacaoCliente filtro)
         {
-            return context.observacoesCliente.Where(c => c.IdCliente == filtro.IdCliente && c.DataExclusao == null)
+            return context.ObservacoesCliente.Where(c => c.IdCliente == filtro.IdCliente && c.DataExclusao == null)
                 .Skip(filtro.Skip)
                 .Take(filtro.QtdRegistros)
                 .ToListAsync();

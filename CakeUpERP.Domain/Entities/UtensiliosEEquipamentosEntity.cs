@@ -12,5 +12,9 @@ namespace CakeUpERP.Domain.Entities
         public decimal CustoCompra { get; set; }
         public DateTime DataCompra { get; set; }
         public int TipoUtensilio { get; set; }
+
+        public int IdReceita { get; set; }
+        public virtual ReceitaEntity Receita { get; set; }
+        public virtual List<RlUtensiliosReceita> ReceitasUtensilios { get; set; }
     }
 }
