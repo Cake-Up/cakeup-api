@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ namespace CakeUpERP.Domain.Entities
         public string Endereco { get; set; }
         public int IdCompanhia { get; set; }
 
-        public CompanhiaEntity Companhia { get; set; }
-        public List<ObservacaoClienteEntity> ObservacaoClienteEntities { get; set; }
+        public virtual CompanhiaEntity Companhia { get; set; }
+        public virtual ICollection<OrcamentoEntity> OrcamentosCliente { get; set; }
+        public virtual ICollection<PedidoEntity> PedidosCliente { get; set; }
+        public virtual ICollection<ObservacaoClienteEntity> ObservacaoClienteEntities { get; set; }
 
     }
 }

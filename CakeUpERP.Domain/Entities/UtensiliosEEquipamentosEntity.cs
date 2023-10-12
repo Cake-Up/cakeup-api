@@ -15,6 +15,6 @@ namespace CakeUpERP.Domain.Entities
 
         public int IdReceita { get; set; }
         public virtual ReceitaEntity Receita { get; set; }
-        public virtual List<RlUtensiliosReceita> ReceitasUtensilios { get; set; }
+        public virtual ICollection<RlUtensiliosReceita> ReceitasUtensilios { get; set; }
     }
 }

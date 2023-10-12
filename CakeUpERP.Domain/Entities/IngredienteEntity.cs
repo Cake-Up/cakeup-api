@@ -1,4 +1,6 @@
-﻿namespace CakeUpERP.Domain.Entities
+﻿using System.Collections.ObjectModel;
+
+namespace CakeUpERP.Domain.Entities
 {
     public class IngredienteEntity : EntityBase
     {
@@ -8,8 +10,9 @@
         public int TipoEmbalagem { get; set; }
         public DateTime Validade { get; set; }
         public int IdUnidadeMedida { get; set; }
-        public virtual List<MovimentacoesIngredientes> MovimentacoesIngredientes { get; set; }
-        public virtual List<RlIngredientesReceita> ReceitasIngredientes { get; set; }
+        public virtual ICollection<MovimentacoesIngredientes> MovimentacoesIngredientes { get; set; }
+        public virtual ICollection<RlIngredientesReceita> ReceitasIngredientes { get; set; }
+        public virtual ICollection<RlItensOrcamento> RlItensOrcamentos { get; set; }
 
     }
 }

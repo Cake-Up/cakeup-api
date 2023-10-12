@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace CakeUpERP.Infra.Data.EntityConfiguration
 {
-    public class ReceitaConfigration : IEntityTypeConfiguration<ReceitaEntity>
+    public class ReceitaConfiguration : IEntityTypeConfiguration<ReceitaEntity>
     {
         public void Configure(EntityTypeBuilder<ReceitaEntity> builder)
         {
             builder.ToTable("receita");
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Nome).IsRequired().HasMaxLength(60);
-            builder.Property(c => c.DataCriacao).IsRequired().HasDefaultValueSql("CURRENT_TIMESTAMP");
+            builder.Property(c => c.DataCriacao).IsRequired();
             builder.Property(c => c.CustoReceita).IsRequired().HasPrecision(5, 2);
             builder.Property(c => c.Peso).IsRequired();
             builder.Property(c => c.EndereçoImagem).HasMaxLength(256);
 
-            builder.HasMany(r => r.Ingrediente)
+            builder.HasMany(r => r.IngredientesReceita)
                 .WithOne(r => r.Receita)
                 .HasForeignKey(r => r.IdReceita);
 
             builder.HasMany(r => r.UtensiliosEEquipamentos)
                 .WithOne(r => r.Receita)
-                .HasForeignKey(r => r.IdReceita);
+                .HasForeignKey(r => r.Id);
 
         }
     }

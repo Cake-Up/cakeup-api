@@ -11,8 +11,13 @@ public class RlItensOrcamentoConfiguration : IEntityTypeConfiguration<RlItensOrc
         builder.HasKey(c => c.Id);
         builder.Property(c => c.IdStatus).IsRequired();
 
-        builder.HasOne(c => c.Receita)
-            .WithMany(c => c.)
-            .HasForeignKey(c => c.IdIngrediente);
+        builder.HasOne(k => k.Ingrediente)
+            .WithMany(k => k.RlItensOrcamentos)
+            .HasForeignKey(k => k.IdIngrediente);
+
+        builder.HasOne(k => k.Receita)
+            .WithMany(k => k.RlItensOrcamentos)
+            .HasForeignKey(k => k.IdReceita);
+
     }
 }

@@ -37,7 +37,10 @@ namespace CakeUpERP.Infra.Data.Repository
 
             var observacoes = cliente!.ObservacaoClienteEntities;
             var deletarObservacaos = new List<Task>();
-            observacoes.ForEach(c => deletarObservacaos.Add(DeletarObservacao(c.Id)));
+            foreach(var observacao in observacoes)
+            {
+                deletarObservacaos.Add(DeletarObservacao(observacao.Id));
+            }
             return Task.WhenAll(deletarObservacaos.ToArray());
         }
 
