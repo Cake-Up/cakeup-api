@@ -14,5 +14,6 @@ namespace CakeUpERP.Domain.Entities
         public string? UrlImagem { get; set; }
 
         public List<ClienteEntity> Clientes { get; set; }
+        public List<UsuarioEntity> Usuarios { get; set; }
     }
 }

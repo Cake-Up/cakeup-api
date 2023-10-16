@@ -17,6 +17,10 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<UsuarioEntity>
         builder.Property(u => u.Role).HasMaxLength(32);
         builder.Property(u => u.Ativo).HasDefaultValue(true);
         builder.Property(u => u.Cpf).HasMaxLength(11);
+        builder.Property(u => u.IdCompanhia).IsRequired();
 
+        builder.HasOne(u => u.Companhia)
+            .WithMany(c => c.Usuarios)
+            .HasForeignKey(u => u.IdCompanhia);
     }
 }
