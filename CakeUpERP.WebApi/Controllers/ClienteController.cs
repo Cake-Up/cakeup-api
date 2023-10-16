@@ -16,7 +16,7 @@ namespace CakeUpERP.WebApi.Controllers
             _clienteService = clienteService;
         }
 
-        [HttpPost]
+        [HttpPost("Cadastrar")]
         public IActionResult Cadastrar(DadosCliente cliente)
         {
             var cadastroCliente = _clienteService.Cadastrar(cliente);
@@ -26,7 +26,7 @@ namespace CakeUpERP.WebApi.Controllers
             return BadRequest(new { mensagem = "Não foi possivel cadastrar o cliente" });
         }
 
-        [HttpPost]
+        [HttpPost("AdicionarObservacao")]
         public IActionResult AdicionarObservacao(DadosObservacaoCliente dadosObservacaoCliente)
         {
             var resultado = _clienteService.CadastrarObservacao(dadosObservacaoCliente);
@@ -36,7 +36,7 @@ namespace CakeUpERP.WebApi.Controllers
             return BadRequest(new { mensagem = "Não foi possivel cadastrar o observacao " });
         }
 
-        [HttpPut]
+        [HttpPut("Atualizar")]
         public IActionResult Atualizar(DadosCliente cliente)
         {
             var cadastroCliente = _clienteService.Atualizar(cliente);
@@ -46,7 +46,7 @@ namespace CakeUpERP.WebApi.Controllers
             return BadRequest(new { mensagem = "Não foi possivel atualizar o cliente" });
         }
 
-        [HttpDelete]
+        [HttpDelete("Deletar/{idCliente}")]
         public IActionResult Deletar(int idCliente)
         {
             var result = _clienteService.Deletar(idCliente);
@@ -56,7 +56,7 @@ namespace CakeUpERP.WebApi.Controllers
             return BadRequest(new { mensagem = "Não foi possivel deletar o cliente" });
         }
 
-        [HttpDelete]
+        [HttpDelete("DeletarObservacao/{idObservacao}")]
         public IActionResult DeletarObservacao(int idObservacao)
         {
             var result = _clienteService.DeletarObservacao(idObservacao);

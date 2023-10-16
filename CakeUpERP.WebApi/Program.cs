@@ -42,9 +42,9 @@ builder.Services.AddCors();
 
 DependecyInjection.AddInfrastructure(builder.Services, config);
 DependecyInjectionJWT.AddInfrastructure(builder.Services, config);
-DependecyInjection.RunMigrations();
-
 var app = builder.Build();
+
+DependecyInjection.RunMigrations(app.Services);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

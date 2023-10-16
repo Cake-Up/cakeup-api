@@ -34,12 +34,24 @@ public class UsuarioService : IUsuarioService
             if (dadosUsuario != null)
                 ObjetoCadastradoException.When("Email ja cadastrado no sistema");
 
+            if (novoUsuario.Companhia != null)
+            {
+                novoUsuario.IdCompanhia = _companhiaRepository.Cadastrar(new CompanhiaEntity()
+                {
+                    Nome = novoUsuario.Companhia.Nome,
+                    Cnpj = novoUsuario.Companhia.Cnpj,
+                    NomeSite = novoUsuario.Companhia.NomeSite,
+                }).Result;
+            }
+
             dadosUsuario = new UsuarioEntity()
             {
                 Ativo = true,
                 Nome = novoUsuario.Nome,
                 Email = novoUsuario.Email,
-                Password = novoUsuario.Password,                
+                Password = novoUsuario.Password,
+                Role = (int)RolesUsuarios.Administrador,
+                IdCompanhia = novoUsuario.IdCompanhia.GetValueOrDefault()
             };
             
             dadosUsuario.DataCriacao = DateTime.Now;
@@ -67,6 +79,7 @@ public class UsuarioService : IUsuarioService
                 Email = email,
                 Password = password,
                 IdUsuario = usuario.Id,
+                IdRole = usuario.Role,
                 Companhia = new DTO.Companhia.CompanhiaDTO()
                 {
                     CNPJ = usuario.Companhia.Cnpj,

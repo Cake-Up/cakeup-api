@@ -41,17 +41,13 @@ namespace CakeUpERP.Infra.IoC
 
         }
 
-        public static void RunMigrations()
+        public static void RunMigrations(this IServiceProvider services)
         {
-            var host = Host.CreateDefaultBuilder().Build();
-
-            using (var scope = host.Services.CreateScope())
+            using (var scope = services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<DataContext>();
                 db.Database.Migrate();
             }
-
-            host.Run();
         }
     }
 }

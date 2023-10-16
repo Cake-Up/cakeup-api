@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.AccessControl;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -104,12 +105,13 @@ public class TokenService: ITokenService
 
     private IEnumerable<Claim> ObterClaimsDoUsuario(UsuarioDTO usuario)
     {
+        int idCompanhia = usuario.Companhia.Id;
         return new Claim[]
             {
                 new Claim(ClaimTypes.Name, usuario.Nome),
                 new Claim(ClaimTypes.Email, usuario.Email),
-                new Claim(ClaimTypes.Role, usuario.Role),
-                new Claim("IdCompanhia", usuario.Companhia.Id.ToString()),
+                new Claim(ClaimTypes.Role, usuario.IdRole.ToString()),
+                new Claim("IdCompanhia", idCompanhia.ToString()),
             };
     }
 }

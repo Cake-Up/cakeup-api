@@ -22,7 +22,7 @@ public class CriarUsuarioDTO
     [MaxLength(256)]
     public string Email { get; set; }
     public int? IdCompanhia { get; set; }
-    public CriarCompanhiaDTO Companhia { get; set; }
+    public CriarCompanhiaDTO? Companhia { get; set; }
 
     public void Validate()
     {
