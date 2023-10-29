@@ -59,7 +59,7 @@ public class UsuarioController : ControllerBase
         }
         catch
         {
-            return BadRequest(new { message = "Email ou senha incorretos!" });
+            return Unauthorized(new { message = "Email ou senha incorretos!" });
         }
     }
 
