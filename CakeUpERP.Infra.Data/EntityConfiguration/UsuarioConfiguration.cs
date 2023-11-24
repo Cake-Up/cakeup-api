@@ -12,7 +12,7 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<UsuarioEntity>
         builder.HasAlternateKey(u => u.Email);
         builder.Property(u => u.Id).HasMaxLength(36);
         builder.Property(u => u.Nome).HasMaxLength(50).IsRequired();
-        builder.Property(u => u.Email).HasMaxLength(256).IsRequired();
+        builder.HasIndex(u => u.Email).IsUnique();
         builder.Property(u => u.Password).HasMaxLength(256).IsRequired();
         builder.Property(u => u.Role).HasMaxLength(32);
         builder.Property(u => u.Ativo).HasDefaultValue(true);

@@ -13,7 +13,7 @@ namespace CakeUpERP.Infra.Data.Repository
         {
             var usuario = dbSet.Where(u => u.Ativo)
                 .Include(u => u.Companhia)
-                .FirstOrDefault(u => u.Email == email);
+                .SingleOrDefault(u => u.Email == email);
 
             return usuario;
         }
@@ -28,7 +28,7 @@ namespace CakeUpERP.Infra.Data.Repository
         {
             try
             {
-                var usuario = dbSet.Where(u => u.Email == email).FirstOrDefault();
+                var usuario = dbSet.Where(u => u.Email == email).SingleOrDefault();
                 usuario.Ativo = false;
                 context.SaveChangesAsync();
                 return Task.CompletedTask;

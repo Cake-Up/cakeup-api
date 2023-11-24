@@ -39,8 +39,6 @@ namespace CakeUpERP.Infra.Data.Context
             builder.ApplyConfiguration(new RlUtensiliosReceitaConfiguration());
             builder.ApplyConfiguration(new UsuarioConfiguration());
             builder.ApplyConfiguration(new UtensiliosEEquipamentosConfiguration());
-
-
         }
     }
 }

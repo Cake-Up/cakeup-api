@@ -30,14 +30,22 @@ namespace CakeUpERP.Infra.IoC
 
             var myhandlers = AppDomain.CurrentDomain.Load("CakeUpERP.Application");
             services.AddMediatR(myhandlers);
+            
+            //Aducuibabdi HttpContextAcessor para poder usalos nos services
+            services.AddHttpContextAccessor();
+
+            services.AddScoped<IClaimsAcessor, JwtClaimsAcessor>();
 
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<ICompanhiaService, CompanhiaService>();
+            services.AddTransient<IClienteService, ClienteService>();
+
 
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<ICompanhiaRepository, CompanhiaRepository>();
+            services.AddTransient<IClienteRepository, ClienteRepository>();
 
         }
 

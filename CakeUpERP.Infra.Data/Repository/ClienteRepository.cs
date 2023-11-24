@@ -12,7 +12,10 @@ namespace CakeUpERP.Infra.Data.Repository
 
         public Task<List<ClienteEntity>> ObterTodos(int idCompanhia)
         {
-            return dbSet.Where(c => c.IdCompanhia == idCompanhia && c.DataExclusao == null).ToListAsync();
+            return dbSet
+                .Where(c => c.IdCompanhia == idCompanhia && c.DataExclusao == null)
+                .Include(c => c.ObservacaoClienteEntities)
+                .ToListAsync();
         }
 
         public Task<ObservacaoClienteEntity?> ObterObservacaoCliente(int idObservacao)
