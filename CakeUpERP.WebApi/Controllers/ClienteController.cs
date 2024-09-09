@@ -1,4 +1,5 @@
-﻿using CakeUpERP.Application.DTO.Bases;
+﻿using CakeUpERP.Application.DTO;
+using CakeUpERP.Application.DTO.Bases;
 using CakeUpERP.Application.DTO.Cliente;
 using CakeUpERP.Application.Interfaces;
 using CakeUpERP.Application.Service;
@@ -83,7 +84,7 @@ namespace CakeUpERP.WebApi.Controllers
         }
 
         [HttpGet("{idCliente}")]
-        [ProducesResponseType(typeof(ClienteDTO), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(DadosCliente), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(DefaultResponse), (int)HttpStatusCode.BadRequest)]
         public IActionResult GetClientePorId(int idCliente)
         {

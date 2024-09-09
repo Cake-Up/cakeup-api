@@ -134,12 +134,22 @@ namespace CakeUpERP.Application.Service
             }
         }
 
-        public ClienteDTO? ObterPorId(int idCliente)
+        public DadosCliente? ObterPorId(int idCliente)
         {
             try
             {
                 var cliente = _repository.ObterPorID(idCliente).Result;
-                return new ClienteDTO(cliente);
+                return new DadosCliente()
+                {
+                    Id = cliente.Id,
+                    Nome = cliente.Nome,
+                    Apelido = cliente.Apelido,
+                    Email = cliente.Email,
+                    Endereco = cliente.Endereco,
+                    Genero = cliente.Genero,
+                    IdCompanhia = cliente.IdCompanhia,
+                    Telefone = cliente.Telefone,
+                };
             }
             catch (Exception e)
             {

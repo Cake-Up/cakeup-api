@@ -1,4 +1,5 @@
-﻿using CakeUpERP.Application.DTO.Cliente;
+﻿using CakeUpERP.Application.DTO;
+using CakeUpERP.Application.DTO.Cliente;
 using CakeUpERP.Domain.Cliente;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace CakeUpERP.Application.Interfaces
         Task Deletar(int idCliente);
         Task DeletarObservacao(int idObservacao);
         List<DadosObservacaoCliente> ObterObservacoes(FiltroBuscaObservacaoCliente filtro);
-        ClienteDTO? ObterPorId(int idCliente);
+        DadosCliente? ObterPorId(int idCliente);
         List<ClienteDTO> ObterTodos(int idCompanhia);
         bool VerificarClienteCompanhia(int idCliente, int idCompanhia);
     }
