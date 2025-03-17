@@ -1,22 +1,24 @@
-ARG REPO=mcr.microsoft.com/dotnet/runtime
+ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM amd64/buildpack-deps:jammy-curl AS installer
+FROM $REPO:8.0.14-alpine3.21-amd64 AS installer
 
-# Retrieve ASP.NET Core
-RUN aspnetcore_version=6.0.19 \
-    && curl -fSL --output aspnetcore.tar.gz https://dotnetcli.azureedge.net/dotnet/aspnetcore/Runtime/$aspnetcore_version/aspnetcore-runtime-$aspnetcore_version-linux-x64.tar.gz \
-    && aspnetcore_sha512='537e4b1be4fcaa5e69013b99c86808e0a13994c87d7542367b3eb18196206d1c27e46a865d89784229a04f69dadbe0b283d7adf1e7848c8d3c7998ee80c9e765' \
-    && echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - \
-    && tar -oxzf aspnetcore.tar.gz ./shared/Microsoft.AspNetCore.App \
-    && rm aspnetcore.tar.gz
+# Retrieve .NET Runtime
+RUN dotnet_version=8.0.14 \
+    && wget -O dotnet.tar.gz https://builds.dotnet.microsoft.com/dotnet/Runtime/$dotnet_version/dotnet-runtime-$dotnet_version-linux-musl-x64.tar.gz \
+    && dotnet_sha512='f9ddf59984ea9692a624ca1e7af2783693c564979eaf460dd4fbb3b72070faada1ee36a20895c492c886f061abf0dbb8327b1f8e0581cbe4991666f092b09789' \
+    && echo "$dotnet_sha512  dotnet.tar.gz" | sha512sum -c - \
+    && mkdir -p /dotnet \
+    && tar -oxzf dotnet.tar.gz -C /dotnet \
+    && rm dotnet.tar.gz
 
 
-# ASP.NET Core image
-FROM $REPO:6.0.19-jammy-amd64
+# .NET runtime image
+FROM $REPO:8.0.14-alpine3.21-amd64
 
-# ASP.NET Core version
-ENV ASPNET_VERSION=6.0.19
+# .NET Runtime version
+ENV DOTNET_VERSION=8.0.14
 
-COPY --from=installer ["/shared/Microsoft.AspNetCore.App", "/usr/share/dotnet/shared/Microsoft.AspNetCore.App"]
+COPY --from=installer ["/dotnet", "/usr/share/dotnet"]
 
+RUN ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
